@@ -2,7 +2,7 @@
 
 ## Tech Stack
 
-1. **PHP Framework:** .NET Core 8
+1. **Framework:** .NET Core 8
 2. **Unit Testing:** NUnit
 3. **Documentation:** Swagger
 4. **Logging UI:** Serilog
