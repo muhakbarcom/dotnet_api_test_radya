@@ -82,7 +82,7 @@ namespace Controllers
             {
                 var userId = User.GetUserId();
                 var cartItems = await _shoppingCartRepository.GetCartItemsAsync(userId);
-                return Ok(new { isSuccess = true, message = "Cart retrieved successfully" });
+                return Ok(new { isSuccess = true, message = "Cart retrieved successfully", data = cartItems });
             }
             catch (System.Exception ex)
             {

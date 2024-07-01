@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace dotnet_api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240701041312_seedRoles")]
-    partial class seedRoles
+    [Migration("20240701062347_bookSeeder")]
+    partial class bookSeeder
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,18 +43,18 @@ namespace dotnet_api.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("Roles", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = "c70a06fa-eb42-4ece-8653-2f4b18640095",
+                            Id = "87e076f7-8ddf-465b-9901-8c159eace3e0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "56808ba4-6b4b-4955-8a0e-65a14605349e",
+                            Id = "268af40e-07f7-416f-805c-3ab1df652f24",
                             Name = "user",
                             NormalizedName = "CUSTOMER"
                         });
@@ -80,7 +80,7 @@ namespace dotnet_api.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("RoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -103,7 +103,7 @@ namespace dotnet_api.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -125,7 +125,7 @@ namespace dotnet_api.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("UserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -140,7 +140,19 @@ namespace dotnet_api.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("UserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "87e076f7-8ddf-465b-9901-8c159eace3e0"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "268af40e-07f7-416f-805c-3ab1df652f24"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -159,7 +171,7 @@ namespace dotnet_api.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Models.Book", b =>
@@ -189,6 +201,53 @@ namespace dotnet_api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Author = "Author 1",
+                            Genre = "Fiction",
+                            Price = 100000m,
+                            Quantity = 10,
+                            Title = "Book 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Author = "Author 2",
+                            Genre = "Fiction",
+                            Price = 200000m,
+                            Quantity = 20,
+                            Title = "Book 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Author = "Author 3",
+                            Genre = "Fiction",
+                            Price = 300000m,
+                            Quantity = 30,
+                            Title = "Book 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Author = "Author 4",
+                            Genre = "Fiction",
+                            Price = 400000m,
+                            Quantity = 40,
+                            Title = "Book 4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Author = "Author 5",
+                            Genre = "Action",
+                            Price = 500000m,
+                            Quantity = 50,
+                            Title = "Book 5"
+                        });
                 });
 
             modelBuilder.Entity("Models.Order", b =>
@@ -340,7 +399,45 @@ namespace dotnet_api.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("Users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "88409dff-fdf8-44a1-95a8-e28207e73de7",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Admin",
+                            LastName = "One",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@gmail.com",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL6WSaWEkxTNryV0PiplEul3e97imcc5LQv8c4VuWiwFrqHL+LCTNTuXikq/8uq61A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "fa5a9f70-550e-4a46-a0ce-7b0c0ce8b054",
+                            Email = "cust1@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Customer",
+                            LastName = "One",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "cust1@gmail.com",
+                            NormalizedUserName = "cust 1",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAGds7eTM59rZYUfgs+TthW0wCrGQ9uZy2WdYnuDOfzP4jouZHHQgax3kAJrjq/GLA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "cust1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace dotnet_api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240701041715_seedUsers")]
-    partial class seedUsers
+    [Migration("20240701061653_initMigrations")]
+    partial class initMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,18 +43,18 @@ namespace dotnet_api.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("Roles", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = "b15ddf11-7a08-45c4-b533-dab487138015",
+                            Id = "f5a79dcf-b3b2-42ef-ad0e-c68d3d586175",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "fad525d5-2c80-4a7a-878e-5132d5125292",
+                            Id = "1aaa0091-cef0-489c-bd9e-2b9198278a98",
                             Name = "user",
                             NormalizedName = "CUSTOMER"
                         });
@@ -80,7 +80,7 @@ namespace dotnet_api.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("RoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -103,7 +103,7 @@ namespace dotnet_api.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -125,7 +125,7 @@ namespace dotnet_api.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("UserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -140,18 +140,18 @@ namespace dotnet_api.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("UserRoles", (string)null);
 
                     b.HasData(
                         new
                         {
                             UserId = "1",
-                            RoleId = "b15ddf11-7a08-45c4-b533-dab487138015"
+                            RoleId = "f5a79dcf-b3b2-42ef-ad0e-c68d3d586175"
                         },
                         new
                         {
                             UserId = "2",
-                            RoleId = "fad525d5-2c80-4a7a-878e-5132d5125292"
+                            RoleId = "1aaa0091-cef0-489c-bd9e-2b9198278a98"
                         });
                 });
 
@@ -171,7 +171,7 @@ namespace dotnet_api.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Models.Book", b =>
@@ -352,14 +352,14 @@ namespace dotnet_api.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9436a425-8245-41f3-94a2-bab4564f036b",
+                            ConcurrencyStamp = "7bd62b53-9674-4988-9b83-e68e11b90341",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -367,7 +367,7 @@ namespace dotnet_api.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEK5SEAuCqnCQ109QR16bkOVF/LqOTK4CU/JCrfzJHPzbq3GuQCon8sWJH8y//1UdtQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEACmErxfqjxG4KGB/UWR/aI6Aljar/IdKrZhhMBwCbouKh17lhK4309Yta1RJoLfng==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -377,7 +377,7 @@ namespace dotnet_api.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "deca7c62-24f0-4886-a856-687ec6a08487",
+                            ConcurrencyStamp = "faf5f806-d55e-4457-bcc7-dbdd4d94d920",
                             Email = "cust1@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Customer",
@@ -385,7 +385,7 @@ namespace dotnet_api.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "cust1@gmail.com",
                             NormalizedUserName = "cust 1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBAUYOTnyjrZg4NDKFFM4EWyApYH1sm6BDyVRL7OBIKxuPRpp2y2qLVnqWJKIBsSAQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPYRWn5M6skqDTqj0nHI1+RN7nyZ1p+zM2mopjbLwrNMvD8hYqJv744atU9f+gEnCw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

@@ -19,41 +19,41 @@ namespace Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // // Customize the ASP.NET Identity model and override the default table names
-            // modelBuilder.Entity<User>(b =>
-            //     {
-            //         b.ToTable("Users");
-            //     });
+            // Customize the ASP.NET Identity model and override the default table names
+            modelBuilder.Entity<User>(b =>
+                {
+                    b.ToTable("Users");
+                });
 
-            // modelBuilder.Entity<IdentityRole>(b =>
-            // {
-            //     b.ToTable("Roles");
-            // });
+            modelBuilder.Entity<IdentityRole>(b =>
+            {
+                b.ToTable("Roles");
+            });
 
-            // modelBuilder.Entity<IdentityUserRole<string>>(b =>
-            // {
-            //     b.ToTable("UserRoles");
-            // });
+            modelBuilder.Entity<IdentityUserRole<string>>(b =>
+            {
+                b.ToTable("UserRoles");
+            });
 
-            // modelBuilder.Entity<IdentityUserClaim<string>>(b =>
-            // {
-            //     b.ToTable("UserClaims");
-            // });
+            modelBuilder.Entity<IdentityUserClaim<string>>(b =>
+            {
+                b.ToTable("UserClaims");
+            });
 
-            // modelBuilder.Entity<IdentityUserLogin<string>>(b =>
-            // {
-            //     b.ToTable("UserLogins");
-            // });
+            modelBuilder.Entity<IdentityUserLogin<string>>(b =>
+            {
+                b.ToTable("UserLogins");
+            });
 
-            // modelBuilder.Entity<IdentityRoleClaim<string>>(b =>
-            // {
-            //     b.ToTable("RoleClaims");
-            // });
+            modelBuilder.Entity<IdentityRoleClaim<string>>(b =>
+            {
+                b.ToTable("RoleClaims");
+            });
 
-            // modelBuilder.Entity<IdentityUserToken<string>>(b =>
-            // {
-            //     b.ToTable("UserTokens");
-            // });
+            modelBuilder.Entity<IdentityUserToken<string>>(b =>
+            {
+                b.ToTable("UserTokens");
+            });
 
 
             List<IdentityRole> roles = new List<IdentityRole>
@@ -106,6 +106,55 @@ namespace Data
                 {
                     RoleId = roles[1].Id,
                     UserId = "2"
+                }
+            );
+
+            // seed 5 books
+            modelBuilder.Entity<Book>().HasData(
+                new Book
+                {
+                    Id = 1,
+                    Title = "Book 1",
+                    Author = "Author 1",
+                    Price = 100000,
+                    Quantity = 10,
+                    Genre = "Fiction"
+                },
+                new Book
+                {
+                    Id = 2,
+                    Title = "Book 2",
+                    Author = "Author 2",
+                    Price = 200000,
+                    Quantity = 20,
+                    Genre = "Fiction"
+                },
+                new Book
+                {
+                    Id = 3,
+                    Title = "Book 3",
+                    Author = "Author 3",
+                    Price = 300000,
+                    Quantity = 30,
+                    Genre = "Fiction"
+                },
+                new Book
+                {
+                    Id = 4,
+                    Title = "Book 4",
+                    Author = "Author 4",
+                    Price = 400000,
+                    Quantity = 40,
+                    Genre = "Fiction"
+                },
+                new Book
+                {
+                    Id = 5,
+                    Title = "Book 5",
+                    Author = "Author 5",
+                    Price = 500000,
+                    Quantity = 50,
+                    Genre = "Action"
                 }
             );
 

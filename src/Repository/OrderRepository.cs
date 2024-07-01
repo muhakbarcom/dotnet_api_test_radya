@@ -21,14 +21,20 @@ namespace Repository
 
             try
             {
-                var cartItems = await _context.ShoppingCarts.Where(c => c.UserId == userId).ToListAsync();
+                var cartItems = await _context.ShoppingCarts.Include(sc => sc.Book).Where(c => c.UserId == userId).ToListAsync();
+
 
                 if (!cartItems.Any())
                 {
                     throw new Exception("Your cart is empty");
                 }
 
-                decimal totalPrice = cartItems.Sum(item => item.Quantity * item.Book.Price);
+                decimal totalPrice = 0;
+
+                foreach (var item in cartItems)
+                {
+                    totalPrice += item.Book.Price * item.Quantity;
+                }
 
                 var order = new Order
                 {
@@ -40,6 +46,7 @@ namespace Repository
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
+
 
                 foreach (var item in cartItems)
                 {
@@ -72,13 +79,8 @@ namespace Repository
             }
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersAsync(string userId, bool isAdmin)
+        public async Task<IEnumerable<Order>> GetOrdersAsync(string userId)
         {
-            if (isAdmin)
-            {
-                return await _context.Orders.Include(o => o.OrderItems).ToListAsync();
-            }
-
             return await _context.Orders.Where(o => o.UserId == userId).Include(o => o.OrderItems).ToListAsync();
         }
     }
