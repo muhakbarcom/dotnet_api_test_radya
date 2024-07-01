@@ -10,6 +10,7 @@ namespace Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "UserOnly")]
     public class ShoppingCartController : ControllerBase
     {
         private readonly IShoppingCartRepository _shoppingCartRepository;
@@ -22,7 +23,7 @@ namespace Controllers
         }
 
         [HttpPost("addToCart")]
-        [Authorize]
+
         public async Task<IActionResult> AddToCart([FromBody] AddToCartDto addToCartDto)
         {
             var userId = User.GetUserId();
@@ -39,7 +40,7 @@ namespace Controllers
         }
 
         [HttpPut("updateCart/{id}")]
-        [Authorize]
+
         public async Task<IActionResult> UpdateCart(int id, [FromBody] UpdateCartDto updateCartDto)
         {
             try
@@ -54,7 +55,7 @@ namespace Controllers
         }
 
         [HttpDelete("removeFromCart/{id}")]
-        [Authorize]
+
         public async Task<IActionResult> RemoveFromCart(int id)
         {
             try
@@ -74,7 +75,7 @@ namespace Controllers
         }
 
         [HttpGet]
-        // [Authorize]
+        // 
         public async Task<IActionResult> ViewCart()
         {
             try

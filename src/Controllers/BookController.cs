@@ -1,6 +1,7 @@
 
 using Dtos.Book;
 using Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -9,6 +10,7 @@ namespace Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "AdminOrUser")]
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;
@@ -19,15 +21,15 @@ namespace Controllers
         }
 
         [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> GetBooks([FromQuery] string genre, [FromQuery] string author)
+        [Authorize(Policy = "AdminOrUser")]
+        public async Task<IActionResult> GetBooks([FromQuery] string genre = null, [FromQuery] string author = null)
         {
             var books = await _bookRepository.GetAllBooksAsync(genre, author);
             return Ok(new { isSuccess = true, message = "Books retrieved successfully", data = books });
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> CreateBook([FromBody] BookDto bookDto)
         {
             var book = new Book
@@ -44,7 +46,7 @@ namespace Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        [Authorize(Policy = "AdminOrUser")]
         public async Task<IActionResult> GetBook(int id)
         {
             var book = await _bookRepository.GetBookByIdAsync(id);
@@ -57,7 +59,7 @@ namespace Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> UpdateBook(int id, [FromBody] BookDto bookDto)
         {
             var book = new Book
@@ -82,7 +84,7 @@ namespace Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> DeleteBook(int id)
         {
             var success = await _bookRepository.DeleteBookAsync(id);

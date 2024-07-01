@@ -104,6 +104,15 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+// routes /books hanya bisa diakses oleh user yang memiliki role Admin
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
+    options.AddPolicy("UserOnly", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
+    options.AddPolicy("AdminOrUser", policy => policy.RequireAssertion(context =>
+    context.User.IsInRole("Admin") || context.User.IsInRole("user")));
+});
+
 
 builder.Services.AddLogging();
 

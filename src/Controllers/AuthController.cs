@@ -47,7 +47,7 @@ namespace Controllers
                     {
                         Username = user.UserName,
                         Email = user.Email,
-                        Token = _tokensService.CreateToken(user)
+                        Token = await _tokensService.CreateToken(user)
                     }
                 );
             }
@@ -92,7 +92,6 @@ namespace Controllers
                     {
                         Username = user.UserName,
                         Email = user.Email,
-                        Token = _tokensService.CreateToken(user)
                     }
                 );
             }

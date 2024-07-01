@@ -7,6 +7,7 @@ namespace Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "AdminOnly")]
     public class InventoryController : ControllerBase
     {
         private readonly IInventoryRepository _inventoryRepository;
@@ -17,7 +18,7 @@ namespace Controllers
         }
 
         [HttpGet("index")]
-        [Authorize]
+
         public async Task<IActionResult> GetAllBooks()
         {
             try
@@ -32,7 +33,7 @@ namespace Controllers
         }
 
         [HttpPost("addStock/{id}")]
-        [Authorize]
+
         public async Task<IActionResult> AddStock(int id, [FromBody] AddStockDto addStockDto)
         {
             if (addStockDto.Quantity < 1)
@@ -52,7 +53,7 @@ namespace Controllers
         }
 
         [HttpPost("reduceStock/{id}")]
-        [Authorize]
+
         public async Task<IActionResult> ReduceStock(int id, [FromBody] ReduceStockDto reduceStockDto)
         {
             if (reduceStockDto.Quantity < 1)
@@ -77,7 +78,7 @@ namespace Controllers
         }
 
         [HttpDelete("deleteBook/{id}")]
-        [Authorize]
+
         public async Task<IActionResult> DeleteBook(int id)
         {
             try

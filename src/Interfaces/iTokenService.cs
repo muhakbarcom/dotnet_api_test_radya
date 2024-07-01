@@ -5,6 +5,6 @@ namespace Interfaces
 {
     public interface iTokenService
     {
-        string CreateToken(User user);
+        Task<string> CreateToken(User user);
     }
 }

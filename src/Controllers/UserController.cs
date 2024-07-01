@@ -10,6 +10,7 @@ namespace Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "AdminOrUser")]
     public class UserController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
@@ -26,7 +27,7 @@ namespace Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Getting all users");
@@ -45,7 +46,7 @@ namespace Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> GetById(string id)
         {
             _logger.LogInformation("Getting user with id {Id}", id);
@@ -71,7 +72,7 @@ namespace Controllers
 
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> Create([FromBody] CreateUserDto req)
         {
             _logger.LogInformation("Creating user with username {Username}", req.Username);
@@ -119,7 +120,7 @@ namespace Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> Update(string id, [FromBody] UpdateUserDto req)
         {
             _logger.LogInformation("Updating user with id {Id}", id);
@@ -155,7 +156,7 @@ namespace Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> Delete(string id)
         {
             _logger.LogInformation("Deleting user with id {Id}", id);
@@ -189,7 +190,7 @@ namespace Controllers
 
         // update profile
         [HttpPut("profile")]
-        [Authorize]
+        [Authorize(Policy = "AdminOrUser")]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto req)
         {
             _logger.LogInformation("Updating profile for user {Username}", User.Identity.Name);
