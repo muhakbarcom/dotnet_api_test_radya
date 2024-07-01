@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace dotnet_api.Migrations
+namespace Migrations
 {
     /// <inheritdoc />
     public partial class bookSeeder : Migration

@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace dotnet_api.Migrations
+namespace Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240701061653_initMigrations")]
-    partial class initMigrations
+    [Migration("20240701062347_bookSeeder")]
+    partial class bookSeeder
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,13 +48,13 @@ namespace dotnet_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f5a79dcf-b3b2-42ef-ad0e-c68d3d586175",
+                            Id = "87e076f7-8ddf-465b-9901-8c159eace3e0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "1aaa0091-cef0-489c-bd9e-2b9198278a98",
+                            Id = "268af40e-07f7-416f-805c-3ab1df652f24",
                             Name = "user",
                             NormalizedName = "CUSTOMER"
                         });
@@ -146,12 +146,12 @@ namespace dotnet_api.Migrations
                         new
                         {
                             UserId = "1",
-                            RoleId = "f5a79dcf-b3b2-42ef-ad0e-c68d3d586175"
+                            RoleId = "87e076f7-8ddf-465b-9901-8c159eace3e0"
                         },
                         new
                         {
                             UserId = "2",
-                            RoleId = "1aaa0091-cef0-489c-bd9e-2b9198278a98"
+                            RoleId = "268af40e-07f7-416f-805c-3ab1df652f24"
                         });
                 });
 
@@ -201,6 +201,53 @@ namespace dotnet_api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Author = "Author 1",
+                            Genre = "Fiction",
+                            Price = 100000m,
+                            Quantity = 10,
+                            Title = "Book 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Author = "Author 2",
+                            Genre = "Fiction",
+                            Price = 200000m,
+                            Quantity = 20,
+                            Title = "Book 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Author = "Author 3",
+                            Genre = "Fiction",
+                            Price = 300000m,
+                            Quantity = 30,
+                            Title = "Book 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Author = "Author 4",
+                            Genre = "Fiction",
+                            Price = 400000m,
+                            Quantity = 40,
+                            Title = "Book 4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Author = "Author 5",
+                            Genre = "Action",
+                            Price = 500000m,
+                            Quantity = 50,
+                            Title = "Book 5"
+                        });
                 });
 
             modelBuilder.Entity("Models.Order", b =>
@@ -359,7 +406,7 @@ namespace dotnet_api.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7bd62b53-9674-4988-9b83-e68e11b90341",
+                            ConcurrencyStamp = "88409dff-fdf8-44a1-95a8-e28207e73de7",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -367,7 +414,7 @@ namespace dotnet_api.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEACmErxfqjxG4KGB/UWR/aI6Aljar/IdKrZhhMBwCbouKh17lhK4309Yta1RJoLfng==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL6WSaWEkxTNryV0PiplEul3e97imcc5LQv8c4VuWiwFrqHL+LCTNTuXikq/8uq61A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -377,7 +424,7 @@ namespace dotnet_api.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "faf5f806-d55e-4457-bcc7-dbdd4d94d920",
+                            ConcurrencyStamp = "fa5a9f70-550e-4a46-a0ce-7b0c0ce8b054",
                             Email = "cust1@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Customer",
@@ -385,7 +432,7 @@ namespace dotnet_api.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "cust1@gmail.com",
                             NormalizedUserName = "cust 1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPYRWn5M6skqDTqj0nHI1+RN7nyZ1p+zM2mopjbLwrNMvD8hYqJv744atU9f+gEnCw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAGds7eTM59rZYUfgs+TthW0wCrGQ9uZy2WdYnuDOfzP4jouZHHQgax3kAJrjq/GLA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
